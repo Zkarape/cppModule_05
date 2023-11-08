@@ -15,4 +15,9 @@ int main()
     {
         std::cerr << "Exception: " << e.what() << '\n';
     }
+    catch (...)
+    {
+        std::cerr << "Exception: " << e.what() << '\n';
+    }
+
 }

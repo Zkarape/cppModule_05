@@ -13,9 +13,11 @@ private:
     const int _grade_to_execute;
 public:
     Form();
+    const char *what() throw();
     int getGradeToSign() const;
     int getGradeToExecute() const;
-    std::string &getName() const;
+    int getSigned() const;
+    const std::string &getName() const;
     ~Form();
 };
 
