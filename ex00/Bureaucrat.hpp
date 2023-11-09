@@ -12,6 +12,8 @@ private:
 public:
     Bureaucrat();
     Bureaucrat(const std::string &name, int grade);
+    Bureaucrat(const Bureaucrat &);
+    Bureaucrat &operator=(const Bureaucrat &);
     void incrementGrade();
     void decrementGrade();
     void checkGrade();

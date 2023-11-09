@@ -10,9 +10,37 @@ void Bureaucrat::checkGrade()
 
 Bureaucrat::Bureaucrat() {}
 
+Bureaucrat::Bureaucrat(const Bureaucrat &obj) : _name(obj._name), _grade(obj._grade)
+{
+    try
+    {
+        this->checkGrade();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Grade is out of bounds in copy constructor." << '\n';
+    }
+}
+
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade)
 {
-    this->checkGrade();
+    try
+    {
+        this->checkGrade();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Grade is out of bounds in parametrized constructor." << '\n';
+    }
+}
+
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
+{
+    if (this == &obj)
+        return (*this);
+    this->_grade = obj._grade;
+    return (*this);
 }
 
 const std::string &Bureaucrat::getName() const
