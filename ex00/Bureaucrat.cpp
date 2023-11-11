@@ -1,10 +1,10 @@
 #include "Bureaucrat.hpp"
 
-void Bureaucrat::checkGrade()
+void Bureaucrat::checkGrade(int grade)
 {
-    if (this->_grade < 1)
+    if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
-    else if (this->_grade > 150)
+    else if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
 }
 
@@ -14,7 +14,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &obj) : _name(obj._name), _grade(obj._gr
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade)
 {
-    this->checkGrade();
+    this->checkGrade(_grade);
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
@@ -37,14 +37,24 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::incrementGrade()
 {
+    this->checkGrade(_grade - 1);
     --_grade;
-    checkGrade();
 }
 
 void Bureaucrat::decrementGrade()
 {
+    this->checkGrade(_grade + 1);
     ++_grade;
-    checkGrade();
+}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return "Grade is too high.\n";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return "Grade is too low.\n";
 }
 
 std::ostream &operator<<(std::ostream &in, Bureaucrat &obj)

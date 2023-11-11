@@ -16,24 +16,18 @@ public:
     Bureaucrat &operator=(const Bureaucrat &);
     void incrementGrade();
     void decrementGrade();
-    void checkGrade();
+    void checkGrade(int);
     const std::string &getName() const;
     int getGrade() const;
     class GradeTooHighException : public std::exception
     {
     public:
-        const char *what() const throw()
-        { 
-            return "Grade is too high.\n";
-        }
+        const char *what() const throw();
     };
     class GradeTooLowException : public std::exception
     {
     public:
-        const char *what() const throw()
-        { 
-            return "Grade is too low.\n";
-        }
+        const char *what() const throw();
     };
     ~Bureaucrat();
 };

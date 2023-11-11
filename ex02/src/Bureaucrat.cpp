@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+#include "../includes/Bureaucrat.hpp"
 
 void Bureaucrat::checkGrade(int grade)
 {

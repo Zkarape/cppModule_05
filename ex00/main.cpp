@@ -8,6 +8,7 @@ int main()
     {
         b.incrementGrade();
         b.incrementGrade();
+        b.decrementGrade();
         b.incrementGrade();
         std::cout << b;
     }
@@ -15,9 +16,4 @@ int main()
     {
         std::cerr << "Exception: " << e.what() << '\n';
     }
-    catch (...)
-    {
-        std::cerr << "Exception: " << e.what() << '\n';
-    }
-
 }

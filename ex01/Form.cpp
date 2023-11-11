@@ -1,6 +1,25 @@
 #include "Form.hpp"
 
-Form::Form() : _name("default"), _grade_to_execute(0), _grade_to_sign(0) {}
+Form::Form() : _name("default"), _signed(0), _grade_to_sign(0), _grade_to_execute(0) {}
+
+Form::Form(const std::string &name, bool sign, const int grSign, const int grExec) : _name(name),  _signed(sign), _grade_to_sign(grSign), _grade_to_execute(grExec)
+{}
+
+Form::Form(const Form &f) : _name(f._name), _signed(f._signed), _grade_to_sign(f._grade_to_sign), _grade_to_execute(f._grade_to_execute)
+{
+    const int i = this->getGradeToSign();
+    const int j = this->getGradeToExecute();
+    if (i > 150 || j > 150)
+        throw(Form::GradeTooLowException());
+    else if (i < 1 || j < 1)
+        throw(Form::GradeTooHighException());
+}
+
+Form &Form::operator=(const Form &obj)
+{
+    (void)obj;
+    return (*this);
+}
 
 int Form::getGradeToSign() const
 {
@@ -12,7 +31,7 @@ int Form::getGradeToExecute() const
     return (_grade_to_execute);
 }
 
-bool Form::getSigned() const
+int Form::getSigned() const
 {
     return (_signed);
 }
@@ -22,9 +41,27 @@ const std::string &Form::getName() const
     return (_name);
 }
 
-const char *Form::what() throw()
+void Form::beSigned(Bureaucrat &obj)
 {
-    return ("The grade of form is too ");
+    if (obj.getGrade() > this->getGradeToSign())
+        throw(Form::GradeTooLowException());
+    else if (_signed == 0)
+    {
+        _signed = 1;
+        std::cout << this->getName() << " Form was signed by " << obj.getName() << std::endl;
+    }
+    else
+        std::cout << "The Form is already signed" << std::endl;
+}
+
+const char *Form::GradeTooHighException::what() const throw()
+{
+    return ("The grade of form is too high.\n");
+}
+
+const char *Form::GradeTooLowException::what() const throw()
+{
+    return ("The grade of form is too low.\n");
 }
 
 std::ostream &operator<<(std::ostream &out, Form &obj)
