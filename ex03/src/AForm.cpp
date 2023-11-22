@@ -1,5 +1,7 @@
 #include "../includes/AForm.hpp"
 
+AForm::AForm(const std::string &n) : _name(n), _grade_to_sign(0), _grade_to_execute(0) {}
+
 AForm::AForm() : _name("default"), _signed(0), _grade_to_sign(0), _grade_to_execute(0) {}
 
 AForm::AForm(const std::string &name, bool sign, const int grSign, const int grExec) : _name(name),  _signed(sign), _grade_to_sign(grSign), _grade_to_execute(grExec)
@@ -80,3 +82,5 @@ std::ostream &operator<<(std::ostream &out, AForm &obj)
 }
 
 AForm::~AForm() {}
+
+AForm::GradeException::~GradeException() throw() {}
