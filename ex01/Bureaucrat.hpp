@@ -20,6 +20,7 @@ public:
     Bureaucrat &operator=(const Bureaucrat &);
     const std::string &getName() const;
     int getGrade() const;
+    void setGrade(const int grade);
     void incrementGrade();
     void decrementGrade();
     void checkGrade(int);

@@ -1,19 +1,34 @@
 #include "Form.hpp"
 
-Form::Form() : _name("default"), _signed(0), _grade_to_sign(0), _grade_to_execute(0) {}
-
-Form::Form(const std::string &name, bool sign, const int grSign, const int grExec) : _name(name),  _signed(sign), _grade_to_sign(grSign), _grade_to_execute(grExec)
-{}
-
-Form::Form(const Form &f) : _name(f._name), _signed(f._signed), _grade_to_sign(f._grade_to_sign), _grade_to_execute(f._grade_to_execute)
+int Form::checkGradeToSign(const int i)
 {
-    const int i = this->getGradeToSign();
-    const int j = this->getGradeToExecute();
-    if (i > 150 || j > 150)
+    if (i > 150)
         throw(Form::GradeTooLowException());
-    else if (i < 1 || j < 1)
+    else if (i < 1)
         throw(Form::GradeTooHighException());
+    return (i);
+    // this->_grade_to_sign = i;
+    // this->_grade_to_execute = j;
 }
+
+int Form::checkGradeToExecute(const int i)
+{
+    if (i > 150)
+        throw(Form::GradeTooLowException());
+    else if (i < 1)
+        throw(Form::GradeTooHighException());
+    return (i);
+    // this->_grade_to_sign = i;
+    // this->_grade_to_execute = j;
+}
+
+
+Form::Form() : _name("default"), _signed(0), _grade_to_sign(1), _grade_to_execute(1) {}
+
+Form::Form(const std::string &name, bool sign, const int grSign, const int grExec) : _name(name),  _signed(sign), _grade_to_sign(checkGradeToSign(grSign)), _grade_to_execute(checkGradeToExecute(grExec)) {}
+
+Form::Form(const Form &f) : _name(f._name), _signed(f._signed), _grade_to_sign(checkGradeToSign(f._grade_to_sign)), _grade_to_execute(checkGradeToExecute(f._grade_to_execute))
+{}
 
 Form &Form::operator=(const Form &obj)
 {
