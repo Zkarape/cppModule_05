@@ -19,6 +19,7 @@ public:
     void checkGrade(int);
     const std::string &getName() const;
     int getGrade() const;
+    void setGrade(const int grade);
     class GradeTooHighException : public std::exception
     {
     public:

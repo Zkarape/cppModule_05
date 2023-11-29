@@ -2,19 +2,25 @@
 
 void Bureaucrat::checkGrade(int grade)
 {
+    // std::cout << this->_grade; //why does not print if exception is thrown??
     if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
     else if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
+    else
+        _grade = grade;
 }
 
 Bureaucrat::Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat &obj) : _name(obj._name), _grade(obj._grade) {}
-
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(const Bureaucrat &obj) : _name(obj._name)
 {
-    this->checkGrade(_grade);
+    this->checkGrade(obj._grade);
+}
+
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
+{
+    this->checkGrade(grade);
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
@@ -28,6 +34,11 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 const std::string &Bureaucrat::getName() const
 {
     return (_name);
+}
+
+void Bureaucrat::setGrade(const int grade)
+{
+    _grade = grade;
 }
 
 int Bureaucrat::getGrade() const

@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	Bureaucrat *b = new Bureaucrat("Bureaucrat_b", 130);
+	Bureaucrat *b = new Bureaucrat("Bureaucrat_b", 151);
 	ShrubberyCreationForm sh = ShrubberyCreationForm();
 	PresidentialPardonForm *pr = new PresidentialPardonForm();
 

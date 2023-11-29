@@ -2,7 +2,7 @@
 
 int main()
 {
-    Bureaucrat b("hahaha", 3);
+    Bureaucrat b("hahaha", 150);
     std::cout << b;
     try
     {
