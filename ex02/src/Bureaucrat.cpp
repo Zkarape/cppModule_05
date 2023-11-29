@@ -6,15 +6,20 @@ void Bureaucrat::checkGrade(int grade)
         throw Bureaucrat::GradeTooHighException();
     else if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
+    else
+        _grade = grade;
 }
 
 Bureaucrat::Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat &obj) : _name(obj._name), _grade(obj._grade) {}
-
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(const Bureaucrat &obj) : _name(obj._name)
 {
-    this->checkGrade(_grade);
+    this->checkGrade(obj._grade);
+}
+
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
+{
+    this->checkGrade(grade);
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
@@ -61,23 +66,14 @@ void Bureaucrat::signForm(AForm &form) const
     }
 }
 
+
 void Bureaucrat::executeForm(AForm const &form)
 {
-    // try
-    // {
-    //     form.execute(*this);
-    //     std::cout << this->getName() << " executed " << form.getName() << std::endl;
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     std::cerr << this->getName() << " couldn’t execute " << form.getName()
-    //        << " because of " << e.what() << std::endl;
-    // }
-
     form.execute(*this);
     std::cout << _name << " executed " << form.getName() << std::endl;
     std::cout << "Explicit error message\n";
 }
+
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {

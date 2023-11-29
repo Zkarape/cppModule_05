@@ -7,8 +7,6 @@ int Form::checkGradeToSign(const int i)
     else if (i < 1)
         throw(Form::GradeTooHighException());
     return (i);
-    // this->_grade_to_sign = i;
-    // this->_grade_to_execute = j;
 }
 
 int Form::checkGradeToExecute(const int i)
@@ -18,8 +16,6 @@ int Form::checkGradeToExecute(const int i)
     else if (i < 1)
         throw(Form::GradeTooHighException());
     return (i);
-    // this->_grade_to_sign = i;
-    // this->_grade_to_execute = j;
 }
 
 

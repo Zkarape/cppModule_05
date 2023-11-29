@@ -23,16 +23,18 @@ public:
     int getGradeToSign() const;
     int getGradeToExecute() const;
     int getSigned() const;
+    int checkGradeToSign(const int i);
+    int checkGradeToExecute(const int i);
     const std::string &getName() const;
     void beSigned(Bureaucrat &);
     virtual void justDoAction() const = 0;
-    void execute(Bureaucrat const & executor) const;
+    void execute(Bureaucrat const &executor) const;
     class GradeException : public std::exception
     {
     private:
         std::string _errorMessage;
     public:
-        GradeException(const std::string& message);
+        GradeException(const std::string &message);
         const char *what() const throw();
     };
     virtual ~AForm();

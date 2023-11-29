@@ -14,7 +14,7 @@ public:
     RobotomyRequestForm(const std::string &);
     RobotomyRequestForm(const RobotomyRequestForm &);
     RobotomyRequestForm &operator=(const RobotomyRequestForm &);
-    void justDoAction();
+    void justDoAction() const;
     ~RobotomyRequestForm();
 };
 

@@ -21,7 +21,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
     return (*this);
 }
 
-void RobotomyRequestForm::justDoAction()
+void RobotomyRequestForm::justDoAction() const
 {
     std::srand(std::time(NULL));
 

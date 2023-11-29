@@ -1,21 +1,31 @@
 #include "../includes/AForm.hpp"
 
-AForm::AForm() : _name("default"), _signed(0), _grade_to_sign(0), _grade_to_execute(0) {}
+int AForm::checkGradeToSign(const int i)
+{
+    if (i > 150)
+        throw(AForm::GradeException("Grade is too low"));
+    else if (i < 1)
+        throw(AForm::GradeException("Grade is too high"));
+    return (i);
+}
 
-AForm::AForm(const std::string &name, bool sign, const int grSign, const int grExec) : _name(name),  _signed(sign), _grade_to_sign(grSign), _grade_to_execute(grExec)
-{}
+int AForm::checkGradeToExecute(const int i)
+{
+    if (i > 150)
+        throw(AForm::GradeException("Grade is too low"));
+    else if (i < 1)
+        throw(AForm::GradeException("Grade is too high"));
+    return (i);
+}
+
+AForm::AForm() : _name("default"), _signed(0), _grade_to_sign(1), _grade_to_execute(1) {}
+
+AForm::AForm(const std::string &name, bool sign, const int grSign, const int grExec) : _name(name),  _signed(sign), _grade_to_sign(checkGradeToSign(grSign)), _grade_to_execute(checkGradeToExecute(grExec)) {}
+
+AForm::AForm(const AForm &f) : _name(f._name), _signed(f._signed), _grade_to_sign(checkGradeToSign(f._grade_to_sign)), _grade_to_execute(checkGradeToExecute(f._grade_to_execute)) {}
 
 AForm::GradeException::GradeException(const std::string& message) : _errorMessage(message) {}
 
-AForm::AForm(const AForm &f) : _name(f._name), _signed(f._signed), _grade_to_sign(f._grade_to_sign), _grade_to_execute(f._grade_to_execute)
-{
-    const int i = this->getGradeToSign();
-    const int j = this->getGradeToExecute();
-    if (i > 150 || j > 150)
-        throw(GradeException("Grade too low exception\n"));
-    else if (i < 1 || j < 1)
-        throw(GradeException("Grade too high exception\n"));
-}
 
 AForm &AForm::operator=(const AForm &obj)
 {
