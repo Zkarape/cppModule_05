@@ -61,19 +61,16 @@ void Bureaucrat::signForm(AForm &form) const
         std::cout << _name << " could not sign the form " << form.getName() << " because ";
         if (_grade > form.getGradeToSign())
             std::cout << "grade is low from sign grade" << std::endl;
-        else if (_grade > form.getGradeToExecute()) //just to use this
+        else if (_grade > form.getGradeToExecute()) // just to use this
             std::cout << "grade is low from execute grade" << std::endl;
     }
 }
-
 
 void Bureaucrat::executeForm(AForm const &form)
 {
     form.execute(*this);
     std::cout << _name << " executed " << form.getName() << std::endl;
-    std::cout << "Explicit error message\n";
 }
-
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {

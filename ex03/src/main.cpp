@@ -5,13 +5,17 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 #include "../includes/Intern.hpp"
 
-int main(void)
+int	main(void)
 {
-	Bureaucrat *b = new Bureaucrat("Bureaucrat_b", 151);
-	ShrubberyCreationForm sh = ShrubberyCreationForm();
-	PresidentialPardonForm *pr = new PresidentialPardonForm();
-
-	sh.justDoAction();
-	pr->execute(*b);
+	{
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("PresidentialPardonForm", "Bender");
+		delete rrf;
+		rrf = someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
+		delete rrf;
+		rrf = someRandomIntern.makeForm("ShrubberyCreationForm", "Bender");
+		delete rrf;
+	}
 	return (0);
 }

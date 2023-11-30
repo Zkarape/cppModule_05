@@ -8,8 +8,6 @@
 
 class Intern
 {
-// private:
-    
 public:
     Intern();
     AForm *makeForm(const std::string &, const std::string &);

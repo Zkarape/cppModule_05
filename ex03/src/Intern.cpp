@@ -22,7 +22,6 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &formTarg
     AForm *(*formsObjs[])(const std::string &formTarget) = {&makePresidentialPardonForm, &makeRobotomyRequestForm, &makeShrubberyCreationForm};
     std::string forms[] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
 
-    
 	for (int i = 0; i < 3; i++)
 	{
 		if (formName == forms[i])
@@ -31,10 +30,8 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &formTarg
 			return (formsObjs[i](formTarget));
 		}
 	}
-
-	std::cout << "Intern can not create a form called " << formName << std::endl;
+	std::cout << "Intern cannot create a form called " << formName << std::endl;
 	return (NULL);
-
 }
 
 Intern::~Intern() {}

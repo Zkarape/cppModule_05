@@ -36,6 +36,7 @@ public:
     public:
         GradeException(const std::string &message);
         const char *what() const throw();
+        virtual ~GradeException() throw();
     };
     virtual ~AForm();
 };

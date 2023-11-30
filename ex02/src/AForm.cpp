@@ -20,12 +20,11 @@ int AForm::checkGradeToExecute(const int i)
 
 AForm::AForm() : _name("default"), _signed(0), _grade_to_sign(1), _grade_to_execute(1) {}
 
-AForm::AForm(const std::string &name, bool sign, const int grSign, const int grExec) : _name(name),  _signed(sign), _grade_to_sign(checkGradeToSign(grSign)), _grade_to_execute(checkGradeToExecute(grExec)) {}
+AForm::AForm(const std::string &name, bool sign, const int grSign, const int grExec) : _name(name), _signed(sign), _grade_to_sign(checkGradeToSign(grSign)), _grade_to_execute(checkGradeToExecute(grExec)) {}
 
 AForm::AForm(const AForm &f) : _name(f._name), _signed(f._signed), _grade_to_sign(checkGradeToSign(f._grade_to_sign)), _grade_to_execute(checkGradeToExecute(f._grade_to_execute)) {}
 
-AForm::GradeException::GradeException(const std::string& message) : _errorMessage(message) {}
-
+AForm::GradeException::GradeException(const std::string &message) : _errorMessage(message) {}
 
 AForm &AForm::operator=(const AForm &obj)
 {
@@ -69,8 +68,11 @@ void AForm::beSigned(Bureaucrat &obj)
 void AForm::execute(Bureaucrat const &executor) const
 {
     if (this->_signed == 0)
-        throw(GradeException("Form is not signed\n"));
-    else if (executor.getGrade() < this->_grade_to_execute)
+    {
+        std::cout << this->_name;
+        throw(GradeException(" Form is not signed\n"));
+    }
+    if (executor.getGrade() > this->_grade_to_execute)
         throw(GradeException("Bureaucrat's grade is not high enough\n"));
     this->justDoAction();
 }
@@ -88,5 +90,7 @@ std::ostream &operator<<(std::ostream &out, AForm &obj)
         << "Grade to Execute is: " << obj.getGradeToExecute() << std::endl;
     return (out);
 }
+
+AForm::GradeException::~GradeException() throw(){};
 
 AForm::~AForm() {}
