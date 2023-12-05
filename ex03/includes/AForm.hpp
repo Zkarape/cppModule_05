@@ -34,7 +34,6 @@ public:
         std::string _errorMessage;
     public:
         GradeException(const std::string& message);
-        // ~GradeException(); ??????????????????
         virtual ~GradeException() throw();
         const char *what() const throw();
     };
